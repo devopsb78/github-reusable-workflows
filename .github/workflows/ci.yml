@@ -10,9 +10,9 @@ jobs:
         name: Code Lint
 #      - run: echo OK
 #        name: Code Build
-      - run: echo OK
+      - run: npm run test:unit
         name: Code Unit Test
-      - run: echo OK
+      - run: npm run test:integration
         name: Code Integration Test
       - run: echo OK
         name: Code Review
