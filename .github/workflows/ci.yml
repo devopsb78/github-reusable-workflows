@@ -7,9 +7,13 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
       - run: echo OK
-        name: Code Build
+        name: Code Lint
+#      - run: echo OK
+#        name: Code Build
       - run: echo OK
-        name: Code Test
+        name: Code Unit Test
+      - run: echo OK
+        name: Code Integration Test
       - run: echo OK
         name: Code Review
       - run: echo OK
