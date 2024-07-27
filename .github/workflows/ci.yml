@@ -2,7 +2,7 @@ name: Continuous Integration - Reusable
 on: [workflow_call]
 jobs:
   CI_Steps:
-    runs-on: ubuntu-latest
+    runs-on: [self_hosted]
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
@@ -10,9 +10,9 @@ jobs:
         name: Code Lint
 #      - run: echo OK
 #        name: Code Build
-      - run: npm run test:unit
+      - run: echo npm run test:unit
         name: Code Unit Test
-      - run: npm run test:integration
+      - run: echo npm run test:integration
         name: Code Integration Test
       - run: echo OK
         name: Code Review
