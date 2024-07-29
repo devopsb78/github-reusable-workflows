@@ -38,7 +38,7 @@ jobs:
         name: Code Unit Test
       - run: echo npm run test:integration
         name: Code Integration Test
-      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.output.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.output.sonarqube_password }}
+      - run: /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.output.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.output.sonarqube_password }}
         name: Code Review
       - run: echo OK
         name: Release Software
