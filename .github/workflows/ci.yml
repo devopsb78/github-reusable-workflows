@@ -2,14 +2,14 @@ name: Continuous Integration - Reusable
 on:
   workflow_call:
     inputs:
-      project_name:
+      project-name:
         required: true
         type: string
       npm_install:
         required: true
         type: boolean
       secrets:
-        vault_token:
+        vault-token:
           required: true
 jobs:
   CI_Steps:
