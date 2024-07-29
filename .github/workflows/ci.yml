@@ -8,10 +8,9 @@ on:
 #      npm_install:
 #        required: true
 #        type: boolean
-      secrets:
-        vault_token:
-          required: true
-          type: string
+#      secrets:
+#        vault_token:
+#          required: true
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
@@ -38,7 +37,7 @@ jobs:
         name: Code Unit Test
       - run: echo npm run test:integration
         name: Code Integration Test
-      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true ${{ secrets.vault_token }}
+      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true
         name: Code Review
       - run: echo OK
         name: Release Software
