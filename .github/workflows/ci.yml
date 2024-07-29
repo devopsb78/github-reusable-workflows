@@ -18,16 +18,16 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
 
-      - name: Import Vault Secrets
-        id: vault-secrets
-        uses: hashicorp/vault-action@v2
-        with:
-          url: https://vault.ramdevops78.online:8200/
-          token: ${{ secrets.vault_token }}
-          tlsSkipVerify: true
-          secrets: |
-              common/data/common sonarqube_user | sonarqube_user ;
-              common/data/common sonarqube_password | sonarqube_password ;
+#      - name: Import Vault Secrets
+#        id: vault-secrets
+#        uses: hashicorp/vault-action@v2
+#        with:
+#          url: https://vault.ramdevops78.online:8200/
+#          token: ${{ secrets.vault_token }}
+#          tlsSkipVerify: true
+#          secrets: |
+#              common/data/common sonarqube_user | sonarqube_user ;
+#              common/data/common sonarqube_password | sonarqube_password ;
 
       - run: echo OK
         name: Code Lint
@@ -38,7 +38,7 @@ jobs:
         name: Code Unit Test
       - run: echo npm run test:integration
         name: Code Integration Test
-      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.output.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.output.sonarqube_password }}
+      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true ${{ secrets.vault_token }}
         name: Code Review
       - run: echo OK
         name: Release Software
