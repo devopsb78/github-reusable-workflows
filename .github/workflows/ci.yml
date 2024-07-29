@@ -9,7 +9,7 @@ on:
         required: true
         type: boolean
     secrets:
-      vault-token:
+      vault_token:
         required: true
 jobs:
   CI_Steps:
