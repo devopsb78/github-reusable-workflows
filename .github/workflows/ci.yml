@@ -32,23 +32,20 @@ jobs:
       - run: echo OK
         name: Code Lint
 
-      - run: echo npm install
-        name: Install Nodejs module
-        if: ${{ inputs.npm_install }}
-
-      - run: echo npm run test:unit
+      - run: env
+#      echo npm run test:unit
         name: Code Unit Test
 
-      - run: echo npm run test:integration
-        name: Code Integration Test
-
-      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
-        name: Code Review
-      - run: env
-        name: env
-
-      - run: echo OK
-        if: ${{  startsWith(github.ref, 'refs/tags/') }}
-        name: Release Software
+#      - run: echo npm run test:integration
+#        name: Code Integration Test
+#
+#      - run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.ramdevops78.online:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user }} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
+#        name: Code Review
+#      - run: env
+#        name: env
+#
+#      - run: echo OK
+#        if: ${{  startsWith(github.ref, 'refs/tags/') }}
+#        name: Release Software
 
 
