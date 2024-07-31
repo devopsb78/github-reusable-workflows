@@ -39,7 +39,8 @@ jobs:
       - run: echo ${GITHUB_REF_NAME} >VERSION
         name: Create Version File
 
-      - run: zip -r artifact.zip ${{ inputs.release_archive_file }}
-        name: Prepare Artifact
+      - name: Prepare Artifact
+        run: zip -r artifact.zip ${{ inputs.release_archive_file }}
+
 #     - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @$artifact.zip -X PUT "http://artifactory-internal.ramdevops78.online:8081/artifactory/${{ inputs.project_name }}/@${{ GITHUB_REF_NAME }}.zip"
 
