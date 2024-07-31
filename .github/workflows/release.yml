@@ -5,6 +5,9 @@ on:
       project_name:
         required: true
         type: string
+#      release_archive_file:
+#        required: true
+#        type: string
       npm_install:
         required: true
         type: boolean
@@ -21,9 +24,22 @@ jobs:
       - run: echo npm install
         name: Install Nodejs module
         if: ${{ inputs.npm_install }}
+        
+      - name: Import Vault Secrets
+        id: vault-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.ramdevops78.online:8200/
+          token: ${{ secrets.vault_token }}
+          tlsSkipVerify: true
+          secrets: |
+            common/data/common artifactory_user | artifactory_user;
+            common/data/common artifactory_password | artifactory_password ;     
+
+        run: env
+      - name: Create Version File
 
       - run: echo OK
-#        if: ${{  startsWith(github.ref, 'refs/tags/') }}
         name: Release Software
-
+#     - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @$artifactory.zip -X PUT "http://artifactory-internal.ramdevops78.online:8081/artifactory/${{ inputs.project_name }}/@${{ GITHUB_REF_NAME }}.zip"
 
