@@ -33,8 +33,9 @@ jobs:
             common/data/common artifactory_user | artifactory_user;
             common/data/common artifactory_password | artifactory_password ;     
 
-        run: env
+
       - name: Create Version File
+        run: env
 
       - run: echo OK
         name: Release Software
