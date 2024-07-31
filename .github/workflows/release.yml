@@ -5,9 +5,9 @@ on:
       project_name:
         required: true
         type: string
-#      release_archive_file:
-#        required: true
-#        type: string
+      release_archive_file:
+        required: true
+        type: string
       npm_install:
         required: true
         type: boolean
@@ -39,7 +39,7 @@ jobs:
       - run: echo ${GITHUB_REF_NAME} >VERSION
         name: Create Version File
 
-      - run: zip -r artifact.zip ${{ inputs.project_name }}
+      - run: zip -r artifact.zip ${{ inputs.release_archive_file}}
         name: Prepare Artifact
 #     - run: curl -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @$artifact.zip -X PUT "http://artifactory-internal.ramdevops78.online:8081/artifactory/${{ inputs.project_name }}/@${{ GITHUB_REF_NAME }}.zip"
 
