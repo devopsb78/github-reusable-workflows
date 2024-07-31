@@ -5,10 +5,10 @@ on:
       project_name:
         required: true
         type: string
-      release_archive_file:
+    release_archive_file:
         required: true
         type: string
-      npm_install:
+    npm_install:
         required: true
         type: boolean
     secrets:
